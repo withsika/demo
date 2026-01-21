@@ -163,11 +163,11 @@ export default function CartPage() {
             <div className="space-y-3 mb-6">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Subtotal</span>
-                <span className="font-medium">{formatPrice(total, 'GHS')}</span>
+                <span className="font-medium">{formatPrice(total)}</span>
               </div>
               <div className="border-t border-gray-100 pt-3 flex justify-between">
                 <span className="font-semibold">Total</span>
-                <span className="font-bold text-lg">{formatPrice(total, 'GHS')}</span>
+                <span className="font-bold text-lg">{formatPrice(total)}</span>
               </div>
             </div>
 
