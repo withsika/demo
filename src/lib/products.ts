@@ -1,67 +1,320 @@
 /**
- * Product data for the demo store
+ * Product data for Malika - African Fashion & Lifestyle Store
  * 
- * Note: XOF (CFA Franc) is a zero-decimal currency.
- * Prices are stored as the actual amount (e.g., 45000 = 45,000 F CFA)
+ * Note: GHS (Ghanaian Cedi) is used as the currency.
+ * Prices are stored in pesewas (smallest unit), so 15000 = GHS 150.00
  */
 
 export interface Product {
   id: string
   name: string
   description: string
-  price: number // actual amount in XOF (no decimals)
+  longDescription?: string
+  price: number // in pesewas (GHS * 100)
+  compareAtPrice?: number // original price for sale items
   currency: string
   image: string
+  images?: string[] // additional images
+  category: string
+  tags?: string[]
+  inStock?: boolean
+  rating?: number
+  reviewCount?: number
+  featured?: boolean
+  isNew?: boolean
+  isBestSeller?: boolean
 }
 
+export interface Category {
+  id: string
+  name: string
+  description: string
+  image: string
+  slug: string
+}
+
+export const categories: Category[] = [
+  {
+    id: 'cat_women',
+    name: 'Women',
+    description: 'Elegant dresses, tops, and accessories',
+    image: 'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=600&h=400&fit=crop',
+    slug: 'women',
+  },
+  {
+    id: 'cat_men',
+    name: 'Men',
+    description: 'Traditional and modern menswear',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop',
+    slug: 'men',
+  },
+  {
+    id: 'cat_accessories',
+    name: 'Accessories',
+    description: 'Jewelry, bags, and more',
+    image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&h=400&fit=crop',
+    slug: 'accessories',
+  },
+  {
+    id: 'cat_home',
+    name: 'Home & Living',
+    description: 'Decor and lifestyle essentials',
+    image: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=600&h=400&fit=crop',
+    slug: 'home',
+  },
+]
+
 export const products: Product[] = [
+  // Women's Collection
   {
-    id: 'prod_1',
-    name: 'Premium Wireless Headphones',
-    description: 'High-quality noise-canceling wireless headphones with 30-hour battery life.',
-    price: 45000, // 45,000 F CFA
-    currency: 'XOF',
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
+    id: 'prod_ankara_dress',
+    name: 'Ankara Maxi Dress',
+    description: 'Stunning floor-length dress featuring vibrant African print patterns.',
+    longDescription: 'This breathtaking Ankara maxi dress combines traditional African craftsmanship with contemporary design. Made from premium 100% cotton Ankara fabric, it features a flattering fitted bodice that flows into an elegant full skirt. Perfect for special occasions, weddings, or making a statement at any event. The bold geometric patterns tell a story of African heritage while the modern cut ensures you look effortlessly chic.',
+    price: 35000, // GHS 350.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=600&h=600&fit=crop',
+    images: [
+      'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=800&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=800&fit=crop',
+    ],
+    category: 'women',
+    tags: ['dress', 'ankara', 'occasion'],
+    inStock: true,
+    rating: 4.8,
+    reviewCount: 124,
+    featured: true,
+    isBestSeller: true,
   },
   {
-    id: 'prod_2',
-    name: 'Smart Watch Pro',
-    description: 'Track your fitness, receive notifications, and more with this sleek smartwatch.',
-    price: 75000, // 75,000 F CFA
-    currency: 'XOF',
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
+    id: 'prod_kente_blouse',
+    name: 'Kente Print Blouse',
+    description: 'Modern blouse with authentic Kente-inspired patterns.',
+    longDescription: 'A beautiful fusion of tradition and modernity, this Kente print blouse brings the regal heritage of Ghana to your everyday wardrobe. The lightweight fabric makes it perfect for warm weather, while the timeless patterns ensure you stand out in any setting.',
+    price: 18500, // GHS 185.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=600&fit=crop',
+    category: 'women',
+    tags: ['blouse', 'kente', 'casual'],
+    inStock: true,
+    rating: 4.6,
+    reviewCount: 89,
+    isNew: true,
   },
   {
-    id: 'prod_3',
-    name: 'Leather Messenger Bag',
-    description: 'Handcrafted genuine leather messenger bag, perfect for work or travel.',
-    price: 120000, // 120,000 F CFA
-    currency: 'XOF',
-    image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=400&fit=crop',
+    id: 'prod_african_wrap_skirt',
+    name: 'African Wrap Skirt',
+    description: 'Versatile wrap skirt in bold African print.',
+    longDescription: 'This versatile wrap skirt is a wardrobe essential. Featuring adjustable ties, it fits multiple sizes and can be styled in various ways. The vibrant African print adds a pop of color to any outfit.',
+    price: 14500, // GHS 145.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1582533561751-ef6f6ab93a2e?w=600&h=600&fit=crop',
+    category: 'women',
+    tags: ['skirt', 'wrap', 'casual'],
+    inStock: true,
+    rating: 4.7,
+    reviewCount: 156,
+    isBestSeller: true,
   },
   {
-    id: 'prod_4',
-    name: 'Organic Coffee Beans (1kg)',
-    description: 'Premium single-origin coffee beans, freshly roasted for the perfect brew.',
-    price: 25000, // 25,000 F CFA
-    currency: 'XOF',
-    image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop',
+    id: 'prod_dashiki_tunic',
+    name: 'Embroidered Dashiki Tunic',
+    description: 'Comfortable tunic with intricate hand embroidery.',
+    longDescription: 'Experience the artistry of West African embroidery with this stunning Dashiki tunic. Each piece features hand-stitched details around the neckline and sleeves, making every tunic unique.',
+    price: 22000, // GHS 220.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&h=600&fit=crop',
+    category: 'women',
+    tags: ['tunic', 'dashiki', 'embroidered'],
+    inStock: true,
+    rating: 4.9,
+    reviewCount: 67,
+    featured: true,
+  },
+  
+  // Men's Collection
+  {
+    id: 'prod_agbada_set',
+    name: 'Premium Agbada Set',
+    description: 'Three-piece traditional Agbada outfit for special occasions.',
+    longDescription: 'Make a grand entrance with this premium Agbada set. Consisting of the flowing outer robe (Agbada), inner shirt (Buba), and matching trousers (Sokoto), this outfit is perfect for weddings, ceremonies, and important celebrations. Crafted from rich Damask fabric with elegant embroidery.',
+    price: 85000, // GHS 850.00
+    compareAtPrice: 95000,
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop',
+    category: 'men',
+    tags: ['agbada', 'traditional', 'occasion'],
+    inStock: true,
+    rating: 4.9,
+    reviewCount: 234,
+    featured: true,
+    isBestSeller: true,
   },
   {
-    id: 'prod_5',
-    name: 'Wireless Charging Pad',
-    description: 'Fast wireless charging for all Qi-enabled devices. Sleek minimalist design.',
-    price: 15000, // 15,000 F CFA
-    currency: 'XOF',
-    image: 'https://images.unsplash.com/photo-1586816879360-004f5b0c51e5?w=400&h=400&fit=crop',
+    id: 'prod_ankara_shirt',
+    name: 'Ankara Print Shirt',
+    description: 'Modern slim-fit shirt with bold African patterns.',
+    longDescription: 'This contemporary Ankara shirt brings African flair to your everyday wardrobe. The slim-fit cut provides a modern silhouette, while the breathable cotton fabric ensures all-day comfort.',
+    price: 16500, // GHS 165.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?w=600&h=600&fit=crop',
+    category: 'men',
+    tags: ['shirt', 'ankara', 'casual'],
+    inStock: true,
+    rating: 4.5,
+    reviewCount: 178,
+    isNew: true,
   },
   {
-    id: 'prod_6',
-    name: 'Sustainable Water Bottle',
-    description: 'Insulated stainless steel bottle that keeps drinks cold for 24 hours.',
-    price: 12000, // 12,000 F CFA
-    currency: 'XOF',
-    image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop',
+    id: 'prod_kaftan_men',
+    name: 'Embroidered Kaftan',
+    description: 'Elegant kaftan with detailed embroidery work.',
+    longDescription: 'This elegant kaftan features exquisite embroidery around the neckline and cuffs. Perfect for Friday prayers, casual outings, or relaxed weekends, it combines comfort with sophistication.',
+    price: 28000, // GHS 280.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1549062572-544a64fb0c56?w=600&h=600&fit=crop',
+    category: 'men',
+    tags: ['kaftan', 'traditional', 'embroidered'],
+    inStock: true,
+    rating: 4.7,
+    reviewCount: 92,
+  },
+  {
+    id: 'prod_senator_suit',
+    name: 'Senator Suit',
+    description: 'Classic Nigerian Senator style with modern tailoring.',
+    longDescription: 'The Senator suit remains a timeless choice for the modern African man. This two-piece set features clean lines and expert tailoring, perfect for business meetings, formal events, or making an impression.',
+    price: 45000, // GHS 450.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&h=600&fit=crop',
+    category: 'men',
+    tags: ['senator', 'formal', 'suit'],
+    inStock: true,
+    rating: 4.8,
+    reviewCount: 145,
+    featured: true,
+  },
+
+  // Accessories
+  {
+    id: 'prod_beaded_necklace',
+    name: 'Handcrafted Beaded Necklace',
+    description: 'Statement necklace featuring traditional African beadwork.',
+    longDescription: 'Each bead in this stunning necklace is hand-selected and strung by skilled artisans. The colorful patterns draw inspiration from various African cultures, creating a unique piece that celebrates the continent\'s rich heritage.',
+    price: 12500, // GHS 125.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&h=600&fit=crop',
+    category: 'accessories',
+    tags: ['jewelry', 'necklace', 'beaded'],
+    inStock: true,
+    rating: 4.9,
+    reviewCount: 312,
+    isBestSeller: true,
+  },
+  {
+    id: 'prod_ankara_bag',
+    name: 'Ankara Tote Bag',
+    description: 'Spacious tote bag with vibrant African print exterior.',
+    longDescription: 'Carry a piece of Africa wherever you go with this beautiful Ankara tote bag. Featuring a sturdy canvas lining and genuine leather straps, it\'s both practical and stylish. Perfect for shopping, work, or weekend adventures.',
+    price: 18000, // GHS 180.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=600&h=600&fit=crop',
+    category: 'accessories',
+    tags: ['bag', 'tote', 'ankara'],
+    inStock: true,
+    rating: 4.6,
+    reviewCount: 87,
+    isNew: true,
+  },
+  {
+    id: 'prod_brass_earrings',
+    name: 'Brass Fulani Earrings',
+    description: 'Traditional Fulani-inspired brass earrings.',
+    longDescription: 'These stunning earrings are inspired by traditional Fulani jewelry. Hand-hammered from solid brass and finished with a protective coating to prevent tarnishing, they add an authentic African touch to any outfit.',
+    price: 8500, // GHS 85.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&h=600&fit=crop',
+    category: 'accessories',
+    tags: ['jewelry', 'earrings', 'brass'],
+    inStock: true,
+    rating: 4.8,
+    reviewCount: 203,
+    featured: true,
+  },
+  {
+    id: 'prod_leather_sandals',
+    name: 'Handmade Leather Sandals',
+    description: 'Comfortable leather sandals with traditional beadwork.',
+    longDescription: 'These beautiful sandals combine genuine leather craftsmanship with colorful Maasai-inspired beadwork. Each pair is handmade by skilled artisans, ensuring unique details and superior comfort.',
+    price: 14500, // GHS 145.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1603487742131-4160ec999306?w=600&h=600&fit=crop',
+    category: 'accessories',
+    tags: ['shoes', 'sandals', 'leather'],
+    inStock: true,
+    rating: 4.7,
+    reviewCount: 156,
+  },
+
+  // Home & Living
+  {
+    id: 'prod_mudcloth_pillow',
+    name: 'Mudcloth Throw Pillow',
+    description: 'Authentic Malian mudcloth pillow cover.',
+    longDescription: 'Add a touch of African artistry to your home with this authentic mudcloth pillow cover. Made in Mali using traditional techniques passed down through generations, each piece features hand-painted geometric patterns.',
+    price: 9500, // GHS 95.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=600&h=600&fit=crop',
+    category: 'home',
+    tags: ['pillow', 'mudcloth', 'decor'],
+    inStock: true,
+    rating: 4.9,
+    reviewCount: 89,
+    featured: true,
+  },
+  {
+    id: 'prod_kente_table_runner',
+    name: 'Kente Table Runner',
+    description: 'Handwoven Kente cloth table runner.',
+    longDescription: 'Transform your dining table with this magnificent Kente cloth table runner. Handwoven by skilled Ghanaian artisans using traditional techniques, it features the iconic geometric patterns that have made Kente famous worldwide.',
+    price: 22000, // GHS 220.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1615529182904-14819c35db37?w=600&h=600&fit=crop',
+    category: 'home',
+    tags: ['table', 'kente', 'decor'],
+    inStock: true,
+    rating: 4.8,
+    reviewCount: 67,
+    isNew: true,
+  },
+  {
+    id: 'prod_basket_set',
+    name: 'Woven Storage Basket Set',
+    description: 'Set of 3 handwoven baskets in varying sizes.',
+    longDescription: 'These beautiful storage baskets are handwoven from natural elephant grass by skilled artisans. Perfect for organizing your home while adding authentic African style. Set includes three nesting sizes.',
+    price: 16500, // GHS 165.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600&h=600&fit=crop',
+    category: 'home',
+    tags: ['basket', 'storage', 'decor'],
+    inStock: true,
+    rating: 4.7,
+    reviewCount: 134,
+    isBestSeller: true,
+  },
+  {
+    id: 'prod_ankara_lampshade',
+    name: 'Ankara Drum Lampshade',
+    description: 'Vibrant Ankara fabric lampshade to brighten any room.',
+    longDescription: 'Light up your space with African style. This drum lampshade is covered in vibrant Ankara fabric, creating a warm and colorful glow when illuminated. Perfect for bedrooms, living rooms, or offices.',
+    price: 11000, // GHS 110.00
+    currency: 'GHS',
+    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600&h=600&fit=crop',
+    category: 'home',
+    tags: ['lighting', 'lampshade', 'ankara'],
+    inStock: true,
+    rating: 4.6,
+    reviewCount: 45,
   },
 ]
 
@@ -69,6 +322,43 @@ export function getProduct(id: string): Product | undefined {
   return products.find(p => p.id === id)
 }
 
+export function getProductsByCategory(categorySlug: string): Product[] {
+  return products.filter(p => p.category === categorySlug)
+}
+
+export function getFeaturedProducts(): Product[] {
+  return products.filter(p => p.featured)
+}
+
+export function getNewArrivals(): Product[] {
+  return products.filter(p => p.isNew)
+}
+
+export function getBestSellers(): Product[] {
+  return products.filter(p => p.isBestSeller)
+}
+
+export function getRelatedProducts(product: Product, limit: number = 4): Product[] {
+  return products
+    .filter(p => p.category === product.category && p.id !== product.id)
+    .slice(0, limit)
+}
+
+export function searchProducts(query: string): Product[] {
+  const lowerQuery = query.toLowerCase()
+  return products.filter(p => 
+    p.name.toLowerCase().includes(lowerQuery) ||
+    p.description.toLowerCase().includes(lowerQuery) ||
+    p.tags?.some(tag => tag.toLowerCase().includes(lowerQuery))
+  )
+}
+
 export function formatPrice(amount: number): string {
-  return `${amount.toLocaleString('fr-FR')} F CFA`
+  // Amount is in pesewas, convert to GHS
+  const ghsAmount = amount / 100
+  return `GH₵ ${ghsAmount.toLocaleString('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+}
+
+export function getCategory(slug: string): Category | undefined {
+  return categories.find(c => c.slug === slug)
 }
