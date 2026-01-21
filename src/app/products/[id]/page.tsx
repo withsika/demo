@@ -228,7 +228,7 @@ export default function ProductPage() {
                 <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                Free delivery on orders over GH₵ 200
+                Free delivery on orders over 25 000 F CFA
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-600">
                 <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

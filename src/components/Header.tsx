@@ -57,7 +57,7 @@ export function Header() {
     <header className="bg-white sticky top-0 z-50 shadow-sm">
       {/* Announcement Bar */}
       <div className="bg-amber-600 text-white text-center text-sm py-2 px-4">
-        <p>🎉 Free shipping on orders over GH₵ 200 | Use code <span className="font-semibold">MALIKA10</span> for 10% off</p>
+        <p>🎉 Free shipping on orders over 25 000 F CFA | Use code <span className="font-semibold">MALIKA10</span> for 10% off</p>
       </div>
 
       <div className="border-b border-gray-100">
